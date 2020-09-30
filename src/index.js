@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BookmarkProvider } from './BookmarkContext';
+import reducer, { initialState } from './Reducer';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BookmarkProvider initialState={initialState} reducer={reducer}>
+      < App /> 
+    </BookmarkProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
