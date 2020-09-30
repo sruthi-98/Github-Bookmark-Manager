@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Search() {
+    const [searchValue, setSearchValue] = useState("");
+
     return (
         <div className="search">
             <div className="search__container">
                 <input
                     type="text"
+                    value={searchValue}
                     placeholder="Search"
                     className="search__searchBar"
+                    onChange={e => setSearchValue(e.target.value)}
                 />
 
                 <select className="search__dropdown">
