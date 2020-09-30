@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Manager from './components/Manager';
+import Search from './components/Search';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -11,6 +12,10 @@ function App() {
           <Route path="/">
             <Header />
             <Manager />
+          </Route>
+          <Route path="/search">
+            <Header />
+            <Search />
           </Route>
         </Switch>
       </div>
