@@ -9,13 +9,13 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/">
-            <Header />
-            <Manager />
-          </Route>
           <Route path="/search">
             <Header />
             <Search />
+          </Route>
+          <Route path="/">
+            <Header />
+            <Manager />
           </Route>
         </Switch>
       </div>
