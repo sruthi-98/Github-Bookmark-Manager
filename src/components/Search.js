@@ -3,9 +3,13 @@ import axios from '../axios';
 
 function Search() {
     const [searchValue, setSearchValue] = useState("");
+    const [searchType, setSearchType] = useState("")
 
     const fetchResult = () => {
-        console.log("Fetch results");
+        const dropdown = document.getElementsByClassName('search__dropdown')[0]
+        setSearchType(dropdown.value);
+        
+        
     }
 
     return (
