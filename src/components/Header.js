@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
         <div className="header">
-            <h3>Github Bookmark Manager</h3>
+            <Link to="/">
+                <h3>Github Bookmark Manager</h3>
+            </Link>
         </div>
     )
 }
