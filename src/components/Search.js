@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import axios from '../axios';
 
 function Search() {
     const [searchValue, setSearchValue] = useState("");
+
+    const fetchResult = () => {
+        console.log("Fetch results");
+    }
 
     return (
         <div className="search">
@@ -15,11 +20,16 @@ function Search() {
                 />
 
                 <select className="search__dropdown">
-                    <option value="users">in Users</option> 
-                    <option value="repo">in Repositories</option>
+                    <option value="users">{searchValue} in Users</option> 
+                    <option value="repo">{searchValue} in Repositories</option>
                 </select>
 
-                <button className="search__searchButton">Search</button>
+                <button 
+                    className="search__searchButton"
+                    onClick={fetchResult}
+                >
+                    Search
+                </button>
             </div>
         </div>
     )
