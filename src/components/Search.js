@@ -4,6 +4,7 @@ import axios from '../axios';
 function Search() {
     const [searchValue, setSearchValue] = useState("");
     const [searchType, setSearchType] = useState("users");
+    const [result, setResult] = useState({});
 
     const findSearchType = () => {
         const dropdown = document.getElementsByClassName('search__dropdown')[0]
