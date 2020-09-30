@@ -3,13 +3,23 @@ import axios from '../axios';
 
 function Search() {
     const [searchValue, setSearchValue] = useState("");
-    const [searchType, setSearchType] = useState("")
+    const [searchType, setSearchType] = useState("");
 
-    const fetchResult = () => {
+    const findSearchType = () => {
         const dropdown = document.getElementsByClassName('search__dropdown')[0]
         setSearchType(dropdown.value);
+    }
+
+    const fetchResult = () => {
         
         switch (searchType) {
+            // case 'users':
+            //     axios({
+            //         url: '/search/users?q=' + searchValue + '&per_page=20',
+            //     }).then((result) => console.log(result))
+            //       .catch(error => console.log(error));
+            //     break;
+
             case 'repo':
                 axios({
                     url: '/search/repositories?q=' + searchValue + '&per_page=20',
@@ -22,6 +32,8 @@ function Search() {
         }
     }
 
+    console.log(searchType);
+
     return (
         <div className="search">
             <div className="search__container">
@@ -33,7 +45,7 @@ function Search() {
                     onChange={e => setSearchValue(e.target.value)}
                 />
 
-                <select className="search__dropdown">
+                <select className="search__dropdown" onChange={findSearchType}>
                     <option value="users">{searchValue} in Users</option> 
                     <option value="repo">{searchValue} in Repositories</option>
                 </select>
