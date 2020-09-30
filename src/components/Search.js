@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../axios';
+import Result from './Result';
 
 function Search() {
     const [searchValue, setSearchValue] = useState("");
@@ -17,14 +18,14 @@ function Search() {
             case 'users':
                 axios({
                     url: '/search/users?q=' + searchValue + '&per_page=20',
-                }).then((result) => console.log(result))
+                }).then((result) => setResult(result))
                   .catch(error => console.log(error));
                 break;
 
             case 'repo':
                 axios({
                     url: '/search/repositories?q=' + searchValue + '&per_page=20',
-                }).then((result) => console.log(result))
+                }).then((result) => setResult(result))
                   .catch(error => console.log(error));
                 break;
         
@@ -33,7 +34,7 @@ function Search() {
         }
     }
 
-    console.log(searchType);
+    console.log(result);
 
     return (
         <div className="search">
@@ -58,6 +59,8 @@ function Search() {
                     Search
                 </button>
             </div>
+
+            <Result result={result} />
         </div>
     )
 }
