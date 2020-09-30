@@ -34,8 +34,6 @@ function Search() {
         }
     }
 
-    console.log(result);
-
     return (
         <div className="search">
             <div className="search__container">
@@ -60,7 +58,7 @@ function Search() {
                 </button>
             </div>
 
-            <Result result={result} />
+            <Result result={result} searchType={searchType}/>
         </div>
     )
 }
