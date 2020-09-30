@@ -3,7 +3,15 @@ import React from 'react';
 function Search() {
     return (
         <div className="search">
-            <h3>Search component</h3>
+            <div className="search__container">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    className="search__searchBar"
+                />
+
+                <button className="search__searchButton">Search</button>
+            </div>
         </div>
     )
 }
