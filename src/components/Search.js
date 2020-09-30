@@ -13,12 +13,12 @@ function Search() {
     const fetchResult = () => {
         
         switch (searchType) {
-            // case 'users':
-            //     axios({
-            //         url: '/search/users?q=' + searchValue + '&per_page=20',
-            //     }).then((result) => console.log(result))
-            //       .catch(error => console.log(error));
-            //     break;
+            case 'users':
+                axios({
+                    url: '/search/users?q=' + searchValue + '&per_page=20',
+                }).then((result) => console.log(result))
+                  .catch(error => console.log(error));
+                break;
 
             case 'repo':
                 axios({
