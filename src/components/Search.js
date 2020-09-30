@@ -9,7 +9,17 @@ function Search() {
         const dropdown = document.getElementsByClassName('search__dropdown')[0]
         setSearchType(dropdown.value);
         
+        switch (searchType) {
+            case 'repo':
+                axios({
+                    url: '/search/repositories?q=' + searchValue + '&per_page=20',
+                }).then((result) => console.log(result))
+                  .catch(error => console.log(error));
+                break;
         
+            default:
+                break;
+        }
     }
 
     return (
