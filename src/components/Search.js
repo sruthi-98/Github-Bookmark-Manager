@@ -6,6 +6,7 @@ function Search() {
     const [searchValue, setSearchValue] = useState("");
     const [searchType, setSearchType] = useState("users");
     const [result, setResult] = useState({});
+    const [pageNumber, setPageNUmber] =  useState(1);
 
     const findSearchType = () => {
         const dropdown = document.getElementsByClassName('search__dropdown')[0]
