@@ -72,10 +72,13 @@ function Search() {
 
             <Result result={result} searchType={searchType}/>
 
-            <div className="search__pageHandler">
-                <button onClick={() => setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber)}>Prev</button>
-                <button onClick={() => setPageNumber(pageNumber + 1)}>Next</button>
-            </div>
+            {
+                Object.keys(result).length !== 0 && 
+                <div className="search__pageHandler">
+                    <button onClick={() => setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber)}>Prev</button>
+                    <button onClick={() => setPageNumber(pageNumber + 1)}>Next</button>
+                </div>
+            }
 
         </div>
     )
