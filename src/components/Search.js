@@ -29,14 +29,24 @@ function Search() {
         switch (searchType) {
             case 'users':
                 axios({
-                    url: '/search/users?q=' + searchValue + '&page=' + pageNumber + '&per_page=20',
+                    url: '/search/users',
+                    params: {
+                        q: searchValue,
+                        page: pageNumber,
+                        per_page: 20
+                    }
                 }).then((result) => setResult(result))
                   .catch(error => console.log(error));
                 break;
 
             case 'repo':
                 axios({
-                    url: '/search/repositories?q=' + searchValue + '&page=' + pageNumber + '&per_page=20',
+                    url: '/search/repositories',
+                    params: {
+                        q: searchValue,
+                        page: pageNumber,
+                        per_page: 20
+                    }
                 }).then((result) => setResult(result))
                   .catch(error => console.log(error));
                 break;
