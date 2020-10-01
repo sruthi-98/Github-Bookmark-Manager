@@ -4,26 +4,32 @@ import User from './User';
 
 function Result({result, searchType}) {
 
-    const repoResults = () => {
-        return  (result?.data?.items.map((item) => {
-            return (
-               <Repo repo={item} />
-        )}));
+    const getResult = () => {
+        switch (searchType) {
+            case 'users':
+                return  (result?.data?.items.map((item) => {
+                    return ( 
+                        <User user={item} />
+                )}));
+
+            case 'repo':
+                return  (result?.data?.items.map((item) => {
+                    return (
+                       <Repo repo={item} />
+                )}));
+
+            default:
+                break;
+        }
     }
 
-    const userResults = () => {
-        return  (result?.data?.items.map((item) => {
-            return ( 
-                <User user={item} />
-        )}));
-    }
+   const displayResult = getResult();
 
-    const repo = repoResults();
-    const user = userResults();
+    console.log(result);
 
     return (
         <div className="result">
-            {searchType === 'repo' ? repo : user}
+            {displayResult}
         </div>
     )
 }
