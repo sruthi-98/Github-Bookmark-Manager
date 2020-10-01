@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from '../axios';
 
 function User({ user }) {
+    const [repo, setRepo] = useState({});
 
     const listRepo = () => {
         axios({
