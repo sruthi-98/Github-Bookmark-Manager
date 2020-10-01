@@ -13,7 +13,9 @@ function Manager() {
                 {
                     bookmark.length === 0 ?
                     <p>No bookmarks added</p> :
-                    bookmark.map(item => <p>{item.repo_name}</p>)
+                    bookmark.map(item => (
+                        <p><a href={item.url} target="_blank" rel="noopener noreferrer">{item.repo_name}</a></p>
+                    ))
                 }
             </div>
             <button className="manager__addButton" onClick={() => history.push('/search')}>
