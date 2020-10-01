@@ -15,14 +15,21 @@ function User({ user }) {
     }
 
     return (
-        <div className="user">
-            <p>{user.login}</p>
-            <button onClick={listRepos}>
-                {!clicked ? 'View' : 'Hide'} {user.login}'s repository list
+        <div className="bg-white border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
+            <p className="mb-4">
+                <strong>User:</strong> {user.login}
+            </p>
+            <button 
+                onClick={listRepos}
+                className="bg-transparent border border-solid border-indigo-800 font-semibold text-indigo-800 p-2 rounded hover:shadow-lg"
+            >
+                {!clicked ? 'View' : 'Hide'} <strong>{user.login}</strong>'s repository list
             </button>
-            {clicked && repos?.data?.map(repo => (
-                <Repo repo={repo} />
-            ))}
+            <div className="">
+                {clicked && repos?.data?.map(repo => (
+                    <Repo repo={repo} />
+                ))}
+            </div>
         </div>
     )
 }

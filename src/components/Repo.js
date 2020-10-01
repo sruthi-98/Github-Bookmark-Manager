@@ -3,7 +3,7 @@ import { useBookmarkValue } from '../BookmarkContext';
 
 function Repo({ repo }) {
     const [{ bookmark }, dispatch] = useBookmarkValue();
-
+    
     const addRepo = (repo) => {
         dispatch({
             type: 'ADD_BOOKMARK',
@@ -15,9 +15,16 @@ function Repo({ repo }) {
     }
 
     return (
-        <div className="repo">
-            <p>{repo.name}</p>
-            <button onClick={e => addRepo(repo, e)}>Add</button>
+        <div className="flex justify-between border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
+            <p className="p-2">
+                <strong>Repository: </strong>{repo.name}
+            </p>
+            <button 
+                onClick={e => addRepo(repo, e)}
+                className="bg-indigo-700 hover:bg-indigo-800 font-semibold text-white py-2 px-4 rounded"
+            >
+                Add
+            </button>
         </div>
     )
 }

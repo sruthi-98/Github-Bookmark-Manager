@@ -3,7 +3,6 @@ import Repo from './Repo';
 import User from './User';
 
 function Result({result, searchType}) {
-
     const getResult = () => {
         switch (searchType) {
             case 'users':
@@ -23,12 +22,12 @@ function Result({result, searchType}) {
         }
     }
 
-   const displayResult = getResult();
+    const displayResult = getResult();
 
     console.log(result);
-
+    
     return (
-        <div className="result">
+        <div className="h-auto">
             {displayResult}
         </div>
     )

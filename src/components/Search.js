@@ -25,7 +25,6 @@ function Search() {
     }
 
     const fetchResult = () => {
-        
         switch (searchType) {
             case 'users':
                 axios({
@@ -56,24 +55,28 @@ function Search() {
         }
     }
 
+
     return (
-        <div className="search">
-            <div className="search__container">
+        <div className="h-screen p-5">
+            <div className="flex bg-white h-auto w-full px-4 py-2 rounded">
                 <input
                     type="text"
                     value={searchValue}
                     placeholder="Search"
-                    className="search__searchBar"
                     onChange={e => setSearchValue(e.target.value)}
+                    className="flex-auto border border-solid border-gray-500 placeholder-black m-2 p-2 rounded"
                 />
 
-                <select className="search__dropdown" onChange={findSearchType}>
+                <select 
+                    onChange={findSearchType}
+                    className="search__dropdown flex-auto bg-gray-200 border border-gray-200 text-gray-700 m-2 p-2" 
+                >
                     <option value="users">{searchValue} in Users</option> 
                     <option value="repo">{searchValue} in Repositories</option>
                 </select>
 
                 <button 
-                    className="search__searchButton"
+                    className="bg-indigo-700 hover:bg-indigo-800 font-semibold text-white w-1/12 m-2 p-2 rounded"
                     onClick={fetchResult}
                 >
                     Search
@@ -84,9 +87,19 @@ function Search() {
 
             {
                 Object.keys(result).length !== 0 && 
-                <div className="search__pageHandler">
-                    <button onClick={() => setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber)}>Prev</button>
-                    <button onClick={() => setPageNumber(pageNumber + 1)}>Next</button>
+                <div className="flex justify-end p-3">
+                    <button 
+                        onClick={() => setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber)}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+                    >
+                        Prev
+                    </button>
+                    <button 
+                        onClick={() => setPageNumber(pageNumber + 1)}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+                    >
+                        Next
+                    </button>
                 </div>
             }
 
