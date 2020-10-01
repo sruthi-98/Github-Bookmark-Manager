@@ -4,15 +4,14 @@ import { useBookmarkValue } from '../BookmarkContext';
 function Result({result, searchType}) {
     const [{ bookmark }, dispatch] = useBookmarkValue();
 
-    const addRepo = (name) => {
+    const addRepo = (repo) => {
         dispatch({
             type: 'ADD_BOOKMARK',
             item: {
-                repo_name: name
+                repo_name: repo.name,
+                url: repo.html_url
             }
         });
-
-        console.log(bookmark);
     }
 
     const repoResults = () => {
@@ -20,7 +19,7 @@ function Result({result, searchType}) {
             return (
                 <div className="result__repo">
                     <p>{item.name}</p>
-                    <button onClick={e => addRepo(item.name, e)}>Add</button>
+                    <button onClick={e => addRepo(item, e)}>Add</button>
                 </div>
         )}));
     }
