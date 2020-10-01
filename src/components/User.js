@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import axios from '../axios';
+import Repo from './Repo';
 
 function User({ user }) {
-    const [repo, setRepo] = useState({});
+    const [repos, setRepos] = useState({});
 
-    const listRepo = () => {
+    const listRepos = () => {
         axios({
             url: '/users/' + user.login + '/repos',
-        }).then((result) => console.log(result))
+        }).then((result) => setRepos(result))
           .catch(error => console.log(error));
     }
+
+    console.log(repos);
 
     return (
         <div className="user">
             <p>{user.login}</p>
-            <button onClick={listRepo}>View {user.login}'s repository list</button>
+            <button onClick={listRepos}>View {user.login}'s repository list</button>
+            {repos?.data?.map(repo => (
+                <Repo repo={repo} />
+            ))}
         </div>
     )
 }
