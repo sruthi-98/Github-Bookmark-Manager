@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBookmarkValue } from '../BookmarkContext';
+import User from './User';
 
 function Result({result, searchType}) {
     const [{ bookmark }, dispatch] = useBookmarkValue();
@@ -26,8 +27,9 @@ function Result({result, searchType}) {
 
     const userResults = () => {
         return  (result?.data?.items.map((item) => {
-            return <p>{item.login}</p>
-        }));
+            return ( 
+                <User user={item} />
+        )}));
     }
 
     const repo = repoResults();
