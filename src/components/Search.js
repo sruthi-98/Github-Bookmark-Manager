@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from '../axios';
 import Result from './Result';
 
@@ -6,7 +6,18 @@ function Search() {
     const [searchValue, setSearchValue] = useState("");
     const [searchType, setSearchType] = useState("users");
     const [result, setResult] = useState({});
-    const [pageNumber, setPageNUmber] =  useState(1);
+    const [pageNumber, setPageNumber] =  useState(1);
+    const isInitialMount = useRef(true);
+
+    // To not fetch results on the first mount but on every change in page number
+    useEffect(() => {
+        if(isInitialMount.current) {
+            isInitialMount.current = false;
+        }
+        else {
+            fetchResult();
+        }
+    }, [pageNumber]);
 
     const findSearchType = () => {
         const dropdown = document.getElementsByClassName('search__dropdown')[0]
@@ -18,14 +29,14 @@ function Search() {
         switch (searchType) {
             case 'users':
                 axios({
-                    url: '/search/users?q=' + searchValue + '&per_page=20',
+                    url: '/search/users?q=' + searchValue + '&page=' + pageNumber + '&per_page=20',
                 }).then((result) => setResult(result))
                   .catch(error => console.log(error));
                 break;
 
             case 'repo':
                 axios({
-                    url: '/search/repositories?q=' + searchValue + '&per_page=20',
+                    url: '/search/repositories?q=' + searchValue + '&page=' + pageNumber + '&per_page=20',
                 }).then((result) => setResult(result))
                   .catch(error => console.log(error));
                 break;
@@ -60,6 +71,12 @@ function Search() {
             </div>
 
             <Result result={result} searchType={searchType}/>
+
+            <div className="search__pageHandler">
+                <button onClick={() => setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber)}>Prev</button>
+                <button onClick={() => setPageNumber(pageNumber + 1)}>Next</button>
+            </div>
+
         </div>
     )
 }
