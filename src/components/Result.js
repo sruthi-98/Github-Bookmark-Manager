@@ -12,13 +12,13 @@ function Result({result, searchType}) {
                 case 'users':
                     return  (result?.data?.items.map((item) => {
                         return ( 
-                            <User user={item} />
+                            <User key={item.id} user={item} />
                     )}));
     
                 case 'repo':
                     return  (result?.data?.items.map((item) => {
                         return (
-                           <Repo repo={item} />
+                           <Repo key={item.id} repo={item} />
                     )}));
     
                 default:
@@ -29,8 +29,6 @@ function Result({result, searchType}) {
 
     const displayResult = getResult();
 
-    console.log(result);
-    
     return (
         <div className="h-auto">
             {displayResult}
