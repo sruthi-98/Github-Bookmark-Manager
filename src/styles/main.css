@@ -22385,6 +22385,10 @@ html {
   font-size: 1rem;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

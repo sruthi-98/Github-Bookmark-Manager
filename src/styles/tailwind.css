@@ -6,3 +6,7 @@ html {
     font-family: monospace;
     font-size: 1rem;
 }
+
+button:disabled {
+    cursor: not-allowed;
+}

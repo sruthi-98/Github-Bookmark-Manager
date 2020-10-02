@@ -62,8 +62,8 @@ function Search() {
         
     }
 
-    console.log(result);
-    console.log(Object.keys(result).length);
+    console.log(result?.data?.total_count);
+    console.log(Math.ceil(result?.data?.total_count / 20));
 
     return (
         <div className="h-auto p-5">
@@ -92,8 +92,9 @@ function Search() {
                 </button>
             </div>
 
+            {/* Display page number when results are fetched and disable when result list is empty */}
             {
-                Object.keys(result).length !== 0 && 
+                Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && 
                 <p className="m-2 px-4 py-2">
                     Showing page <strong>{pageNumber}</strong> of results.
                 </p>
@@ -101,17 +102,22 @@ function Search() {
 
             <Result result={result} searchType={searchType}/>
 
+            {/* Display page buttons when results are fetched */}
             {
                 Object.keys(result).length !== 0 && 
                 <div className="flex justify-end p-3 mb-5">
                     <button 
-                        onClick={() => setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber)}
+                        id="prev"
+                        onClick={() => setPageNumber(pageNumber - 1)}
+                        disabled={pageNumber === 1}
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
                     >
                         Prev
                     </button>
                     <button 
+                        id="next"
                         onClick={() => setPageNumber(pageNumber + 1)}
+                        disabled={pageNumber === Math.ceil(result?.data?.total_count / 20)}
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
                     >
                         Next
