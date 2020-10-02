@@ -65,9 +65,6 @@ function Search() {
         
     }
 
-    console.log(result?.data?.total_count);
-    console.log(Math.ceil(result?.data?.total_count / 20));
-
     return (
         <div className="h-auto p-5">
             <div className="block md:flex bg-white h-auto w-full px-4 py-2 rounded">
@@ -105,11 +102,17 @@ function Search() {
             }
 
             {/* Display a loader animation when results are being fetched */}
-            {loading ? <div className="loader"></div> : <Result result={result} searchType={searchType}/>}
+            {
+                loading ? 
+                <div className="loader flex justify-center items-center w-full">
+                    <svg className="animate-spin h-10 w-10 border border-solid border-orange-600 border-t-2 rounded-full"></svg>
+                </div> : 
+                <Result result={result} searchType={searchType}/>
+            }
 
             {/* Display page buttons when results are fetched */}
             {
-                Object.keys(result).length !== 0 && 
+                Object.keys(result).length !== 0 && result?.data?.items.length !== 0 &&
                 <div className="flex justify-end p-3 mb-5">
                     <button 
                         id="prev"
