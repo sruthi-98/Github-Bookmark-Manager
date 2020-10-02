@@ -100,7 +100,7 @@ function Search() {
 
             {/* Display page number when results are fetched and disable when result list is empty */}
             {
-                Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && 
+                Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && !loading &&
                 <p className="m-2 px-4 py-2">
                     Showing page <strong>{pageNumber}</strong> of results.
                 </p>
@@ -115,7 +115,7 @@ function Search() {
 
             {/* Display page buttons when results are fetched */}
             {
-                Object.keys(result).length !== 0 && result?.data?.items.length !== 0 &&
+                Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && !loading &&
                 <div className="flex justify-end p-3 mb-5">
                     <button 
                         id="prev"
