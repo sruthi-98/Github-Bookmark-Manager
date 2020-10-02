@@ -26,6 +26,7 @@ function Search() {
     }
 
     const fetchResult = () => {
+        setLoading(true);
         switch (searchType) {
             case 'users':
                 axios({
@@ -38,6 +39,7 @@ function Search() {
                 }).then((result) => {
                         setResult(result);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
+                        setLoading(false);
                     })
                   .catch(error => console.log(error));
                 break;
@@ -92,6 +94,7 @@ function Search() {
                     Search
                 </button>
             </div>
+            
 
             {/* Display page number when results are fetched and disable when result list is empty */}
             {
@@ -101,7 +104,8 @@ function Search() {
                 </p>
             }
 
-            <Result result={result} searchType={searchType}/>
+            {/* Display a loader animation when results are being fetched */}
+            {loading ? <div className="loader"></div> : <Result result={result} searchType={searchType}/>}
 
             {/* Display page buttons when results are fetched */}
             {
