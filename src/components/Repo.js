@@ -15,13 +15,13 @@ function Repo({ repo }) {
     }
 
     return (
-        <div className="flex justify-between border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
+        <div className="flex justify-between items-center border border-solid border-gray-400 shadow-lg p-5 m-5 rounded">
             <p className="p-2">
                 <strong>Repository: </strong>{repo.name}
             </p>
             <button 
                 onClick={e => addRepo(repo, e)}
-                className="bg-indigo-700 hover:bg-indigo-800 font-semibold text-white py-2 px-4 rounded"
+                className="bg-purple-800 hover:bg-purple-900 font-semibold text-white h-10 py-2 px-4 rounded"
             >
                 Add
             </button>
