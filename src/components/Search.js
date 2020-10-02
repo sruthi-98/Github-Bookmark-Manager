@@ -26,7 +26,12 @@ function Search() {
     }
 
     const fetchResult = () => {
-        setLoading(true);
+        if(searchValue === '') {
+            alert("Enter valid input !!!!");
+        }
+        else {
+            setLoading(true);
+        }
         switch (searchType) {
             case 'users':
                 axios({
