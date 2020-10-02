@@ -7,6 +7,7 @@ function Search() {
     const [searchType, setSearchType] = useState("users");
     const [result, setResult] = useState({});
     const [pageNumber, setPageNumber] =  useState(1);
+    const [loading, setLoading] = useState(false);
     const isInitialMount = useRef(true);
 
     // To not fetch results on the first mount but on every change in page number
