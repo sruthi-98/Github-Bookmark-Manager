@@ -22389,6 +22389,12 @@ button:disabled {
   cursor: not-allowed;
 }
 
+div.popup {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
