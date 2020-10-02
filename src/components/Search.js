@@ -104,9 +104,7 @@ function Search() {
             {/* Display a loader animation when results are being fetched */}
             {
                 loading ? 
-                <div className="loader flex justify-center items-center w-full">
-                    <svg className="animate-spin h-10 w-10 border border-solid border-orange-600 border-t-2 rounded-full"></svg>
-                </div> : 
+                <svg className="loader fixed animate-spin h-10 w-10 rounded-full top-0 left-0"></svg>: 
                 <Result result={result} searchType={searchType}/>
             }
 
