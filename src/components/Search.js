@@ -9,8 +9,10 @@ function Search() {
     const [pageNumber, setPageNumber] =  useState(1);
     const [loading, setLoading] = useState(false);
     const isInitialMount = useRef(true);
+    // const searchType = useRef("users");
+    const searchRef = useRef('');
 
-    // To not fetch results on the first mount but on every change in page number
+    // To not fetch results on the first mount but on every state update
     useEffect(() => {
         if(isInitialMount.current) {
             isInitialMount.current = false;
@@ -18,20 +20,24 @@ function Search() {
         else {
             fetchResult();
         }
-    }, [pageNumber]);
+    }, [pageNumber, searchValue, searchType]);
 
-    const findSearchType = () => {
-        const dropdown = document.getElementsByClassName('search__dropdown')[0]
+    // State gets updated on button click to prevent re render 
+    const updateState = () => {
+        const dropdown = document.getElementsByClassName('search__dropdown')[0];
         setSearchType(dropdown.value);
+        setSearchValue(searchRef.current.value);
     }
 
     const fetchResult = () => {
+        
         if(searchValue === '') {
             alert("Enter valid input !!!!");
         }
         else {
             setLoading(true);
         }
+
         switch (searchType) {
             case 'users':
                 axios({
@@ -60,6 +66,7 @@ function Search() {
                 }).then((result) => {
                         setResult(result);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
+                        setLoading(false);
                     })
                   .catch(error => console.log(error));
                 break;
@@ -75,23 +82,21 @@ function Search() {
             <div className="block md:flex bg-white h-auto w-full px-4 py-2 rounded">
                 <input
                     type="text"
-                    value={searchValue}
+                    ref={searchRef}
                     placeholder="Search"
-                    onChange={e => setSearchValue(e.target.value)}
                     className="block w-full md:flex-auto border border-solid border-gray-500 placeholder-black m-2 p-2 rounded"
                 />
 
                 <select 
-                    onChange={findSearchType}
                     className="search__dropdown block w-full md:flex-auto bg-gray-200 border border-gray-200 text-gray-700 m-2 p-2" 
                 > 
-                    <option value="users">{searchValue} in Users</option> 
-                    <option value="repo">{searchValue} in Repositories</option>
+                    <option value="users">in Users</option> 
+                    <option value="repo">in Repositories</option>
                 </select>
 
                 <button 
                     className="bg-orange-600 hover:bg-orange-700 font-semibold text-white md:w-2/12 m-2 p-2 rounded"
-                    onClick={fetchResult}
+                    onClick={updateState}
                 >
                     Search
                 </button>
