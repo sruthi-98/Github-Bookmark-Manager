@@ -28,6 +28,8 @@ function User({ user }) {
                 {!clicked ? 'View' : 'Hide'} <strong>{user.login}</strong>'s repository list
             </button>
             <div key={user.id} >
+                {clicked && repos?.data.length === 0 && <p className="text-lg p-2 mt-2">No repositories !!!!!</p>}
+                
                 {clicked && repos?.data?.map(repo => (
                     <Repo key={repo.id} repo={repo} />
                 ))}
