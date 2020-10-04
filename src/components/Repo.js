@@ -12,6 +12,7 @@ function Repo({ repo }) {
         dispatch({
             type: 'ADD_BOOKMARK',
             item: {
+                id: repo.id,
                 repo_name: repo.name,
                 title: title,
                 url: repo.html_url
