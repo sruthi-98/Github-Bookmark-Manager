@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from '../axios';
 import Result from './Result';
+import SearchBar from './SearchBar';
+import SearchButton from './SearchButton';
+import SearchDropdown from './SearchDropdown';
 
 function Search() {
     const [searchValue, setSearchValue] = useState("");
@@ -9,7 +12,6 @@ function Search() {
     const [pageNumber, setPageNumber] =  useState(1);
     const [loading, setLoading] = useState(false);
     const isInitialMount = useRef(true);
-    // const searchType = useRef("users");
     const searchRef = useRef('');
 
     // To not fetch results on the first mount but on every state update
@@ -73,33 +75,15 @@ function Search() {
         
             default:
                 break;
-        }
-        
+        } 
     }
 
     return (
         <div className="h-auto p-5">
             <div className="block md:flex bg-white h-auto w-full px-4 py-2 rounded">
-                <input
-                    type="text"
-                    ref={searchRef}
-                    placeholder="Search"
-                    className="block w-full md:flex-auto border border-solid border-gray-500 placeholder-black m-2 p-2 rounded"
-                />
-
-                <select 
-                    className="search__dropdown block w-full md:flex-auto bg-gray-200 border border-gray-200 text-gray-700 m-2 p-2" 
-                > 
-                    <option value="users">in Users</option> 
-                    <option value="repo">in Repositories</option>
-                </select>
-
-                <button 
-                    className="bg-orange-600 hover:bg-orange-700 font-semibold text-white md:w-2/12 m-2 p-2 rounded"
-                    onClick={updateState}
-                >
-                    Search
-                </button>
+                <SearchBar searchRef={searchRef} />
+                <SearchDropdown />
+                <SearchButton clickHandler={updateState} />
             </div>
             
 
