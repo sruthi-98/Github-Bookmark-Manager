@@ -11,9 +11,12 @@ function Search() {
     const [result, setResult] = useState({});
     const [pageNumber, setPageNumber] =  useState(1);
     const [loading, setLoading] = useState(false);
+
     const isInitialMount = useRef(true);
     const searchRef = useRef('');
+
     const isResult = Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && !loading;
+    const pageLimit = Math.ceil(result?.data?.total_count / 20);
 
     // To not fetch results on the first mount but on every state update
     useEffect(() => {
@@ -64,7 +67,7 @@ function Search() {
             {
                 isResult &&
                 <p className="m-2 px-4 py-2">
-                    Showing page <strong>{pageNumber}</strong> of results.
+                    Showing page <strong>{pageNumber}</strong> of <strong>{pageLimit}</strong>.
                 </p>
             }
 
@@ -90,7 +93,7 @@ function Search() {
                     <button 
                         id="next"
                         onClick={() => setPageNumber(pageNumber + 1)}
-                        disabled={pageNumber === Math.ceil(result?.data?.total_count / 20)}
+                        disabled={pageNumber === pageLimit}
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
                     >
                         Next
