@@ -1,11 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useBookmarkValue } from '../BookmarkContext';
+import AddBookmark from './AddBookmark';
 
 function Manager() {
-    const history = useHistory();
     const [{ bookmark }, dispatch] = useBookmarkValue();
-
+    
     const deleteRepo = (id) => {
         dispatch({
             type: 'DELETE_BOOKMARK',
@@ -34,16 +33,9 @@ function Manager() {
                             Delete
                         </button>
                     </div>
-                ))}
+            ))}
 
-            <div className="flex">
-                <button 
-                    className="bg-orange-600 hover:bg-orange-700 font-semibold text-white py-2 px-5 mt-8 ml-4 rounded" 
-                    onClick={() => history.push('/search')}
-                >
-                    Add new bookmark
-                </button>
-            </div>
+            <AddBookmark />
         </div>
     )
 }
