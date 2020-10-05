@@ -31,14 +31,8 @@ function Search() {
         setSearchValue(searchRef.current.value);
     }
 
-    const fetchResult = () => {
-        
-        if(searchValue === '') {
-            alert("Enter valid input !!!!");
-        }
-        else {
-            setLoading(true);
-        }
+    const fetchResult = () => { 
+        searchValue === '' ? alert("Enter valid input !!!!") : setLoading(true);
 
         const url = searchType === 'repo' ? '/search/repositories' : '/search/users';
         axios({
