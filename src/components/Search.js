@@ -40,42 +40,20 @@ function Search() {
             setLoading(true);
         }
 
-        switch (searchType) {
-            case 'users':
-                axios({
-                    url: '/search/users',
-                    params: {
-                        q: searchValue,
-                        page: pageNumber,
-                        per_page: 20
-                    }
-                }).then((result) => {
-                        setResult(result);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        setLoading(false);
-                    })
-                  .catch(error => console.log(error));
-                break;
-
-            case 'repo':
-                axios({
-                    url: '/search/repositories',
-                    params: {
-                        q: searchValue,
-                        page: pageNumber,
-                        per_page: 20
-                    }
-                }).then((result) => {
-                        setResult(result);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        setLoading(false);
-                    })
-                  .catch(error => console.log(error));
-                break;
-        
-            default:
-                break;
-        } 
+        const url = searchType === 'repo' ? '/search/repositories' : '/search/users';
+        axios({
+            url: url,
+            params: {
+                q: searchValue,
+                page: pageNumber,
+                per_page: 20
+            }
+        }).then((result) => {
+                setResult(result);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setLoading(false);
+            })
+          .catch(error => console.log(error));
     }
 
     return (
