@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from '../axios';
+import PageButtons from './PageButtons';
 import Result from './Result';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
@@ -54,6 +55,14 @@ function Search() {
           .catch(error => console.log(error));
     }
 
+    const prevPage = () => {
+        setPageNumber(pageNumber - 1);
+    }
+
+    const nextPage = () => {
+        setPageNumber(pageNumber + 1)
+    }
+
     return (
         <div className="h-auto p-5">
             <div className="block md:flex bg-white h-auto w-full px-4 py-2 rounded">
@@ -79,27 +88,7 @@ function Search() {
             }
 
             {/* Display page buttons when results are fetched */}
-            {
-                isResult &&
-                <div className="flex justify-end p-3 mb-5">
-                    <button 
-                        id="prev"
-                        onClick={() => setPageNumber(pageNumber - 1)}
-                        disabled={pageNumber === 1}
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
-                    >
-                        Prev
-                    </button>
-                    <button 
-                        id="next"
-                        onClick={() => setPageNumber(pageNumber + 1)}
-                        disabled={pageNumber === pageLimit}
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
-                    >
-                        Next
-                    </button>
-                </div>
-            }
+            {isResult && <PageButtons pageNumber={pageNumber} pageLimit={pageLimit} prevPage={prevPage} nextPage={nextPage} />}
 
         </div>
     )
