@@ -16,9 +16,12 @@ function App() {
               <Header />
               <Search />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Header />
               <Manager />
+            </Route>
+            <Route path="*">
+              <h1>Error 404 Not Found</h1>
             </Route>
           </Switch>
         </div>
