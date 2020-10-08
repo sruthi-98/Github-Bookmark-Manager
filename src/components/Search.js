@@ -31,13 +31,16 @@ function Search() {
 
     // State gets updated on button click to prevent re render 
     const updateState = () => {
-        const dropdown = document.getElementsByClassName('search__dropdown')[0];
-        setSearchType(dropdown.value);
-        setSearchValue(searchRef.current.value);
+        // Validate search query
+        if(searchRef.current.value !== '') {
+            const dropdown = document.getElementsByClassName('search__dropdown')[0];
+            setSearchType(dropdown.value);
+            setSearchValue(searchRef.current.value);
+        }
     }
 
     const fetchResult = () => { 
-        searchValue === '' ? alert("Enter valid input !!!!") : setLoading(true);
+        setLoading(true);
 
         const url = searchType === 'repo' ? '/search/repositories' : '/search/users';
         axios({
