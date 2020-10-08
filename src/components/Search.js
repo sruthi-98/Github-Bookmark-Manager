@@ -30,9 +30,12 @@ function Search() {
     }, [pageNumber, searchValue, searchType]);
 
     // State gets updated on button click to prevent re render 
-    const updateState = () => {
+    const updateState = (event) => {
+        event.preventDefault();
+
         // Validate search query
-        if(searchRef.current.value !== '') {
+        const searchBar = document.getElementById("searchBar");
+        if(searchBar.value !== '') {
             const dropdown = document.getElementsByClassName('search__dropdown')[0];
             setSearchType(dropdown.value);
             setSearchValue(searchRef.current.value);
@@ -68,12 +71,12 @@ function Search() {
 
     return (
         <div className="h-auto p-5">
-            <div className="block md:flex bg-white h-auto w-full px-4 py-2 rounded">
+            
+            <form className="block md:flex bg-white h-auto w-full px-4 py-2 rounded" onSubmit={updateState}>
                 <SearchBar searchRef={searchRef} />
                 <SearchDropdown />
-                <SearchButton clickHandler={updateState} />
-            </div>
-            
+                <SearchButton />
+            </form>
 
             {/* Display page number when results are fetched and disable when result list is empty */}
             {
