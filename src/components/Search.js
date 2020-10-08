@@ -69,7 +69,9 @@ function Search() {
 
     const onChange = () => {
         const searchBar = document.getElementById("searchBar");
-        setSearchValue(searchBar.value);
+        if(searchBar.value !== '') {
+            setSearchValue(searchBar.value);
+        }
     }
 
     return (
