@@ -14,7 +14,6 @@ function Search() {
     const [loading, setLoading] = useState(false);
 
     const isInitialMount = useRef(true);
-    const searchRef = useRef('');
 
     const isResult = Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && !loading;
     const pageLimit = Math.ceil(result?.data?.total_count / 20);
@@ -38,7 +37,6 @@ function Search() {
         if(searchBar.value !== '') {
             const dropdown = document.getElementsByClassName('search__dropdown')[0];
             setSearchType(dropdown.value);
-            setSearchValue(searchRef.current.value);
         }
     }
 
@@ -69,11 +67,16 @@ function Search() {
         setPageNumber(pageNumber + 1)
     }
 
+    const onChange = () => {
+        const searchBar = document.getElementById("searchBar");
+        setSearchValue(searchBar.value);
+    }
+
     return (
         <div className="h-auto p-5">
             
             <form className="block md:flex bg-white h-auto w-full px-4 py-2 rounded" onSubmit={updateState}>
-                <SearchBar searchRef={searchRef} />
+                <SearchBar onChange={onChange} />
                 <SearchDropdown />
                 <SearchButton />
             </form>
