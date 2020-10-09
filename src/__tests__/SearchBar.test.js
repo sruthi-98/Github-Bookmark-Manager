@@ -1,26 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { mount } from 'enzyme';
 import SearchBar from '../components/SearchBar';
 
-// Mocking useRef hook
-jest.mock('react', () => {
-    const originReact = jest.requireActual('react');
-    const mockUseRef = jest.fn();
-    return {
-      ...originReact,
-      useRef: mockUseRef,
-    };
-});
-
-
 describe('Search bar', () => {
-    test('Checking if the search query is captured correctly', () => {
-        const mockRef = { current: { value: '' } };
-        useRef.mockReturnValueOnce(mockRef);
-        const wrapper = mount(<SearchBar searchRef={mockRef} />);
+    test('Checking if the onChange handler is called', () => {
+        const onChangeMock = jest.fn();
+        const wrapper = mount(<SearchBar onChange={onChangeMock} />);
+        
         const searchBar = wrapper.find('input');
-        searchBar.instance().value = 'search query';
-        expect(mockRef.current.value).toEqual('search query');
-        expect(mockRef.current.value).not.toEqual('search');
+        searchBar.simulate('change', {target: {value: 'search query'}});
+        expect(onChangeMock).toHaveBeenCalledTimes(1);
     });
 })
