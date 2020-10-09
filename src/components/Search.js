@@ -29,13 +29,8 @@ function Search() {
     // State gets updated on button click to prevent re render 
     const updateState = (event) => {
         event.preventDefault();
-
-        // Validate search query
-        const searchBar = document.getElementById("searchBar");
-        if(searchBar.value !== '') {
-            const dropdown = document.getElementsByClassName('search__dropdown')[0];
-            setSearchType(dropdown.value);
-        }
+        const dropdown = document.getElementsByClassName('search__dropdown')[0];
+        setSearchType(dropdown.value);
     }
 
     const fetchResult = () => {  
@@ -66,11 +61,8 @@ function Search() {
         setPageNumber(pageNumber + 1)
     }
 
-    const onChange = () => {
-        const searchBar = document.getElementById("searchBar");
-        if(searchBar.value !== '') {
-            setSearchValue(searchBar.value);
-        }
+    const onChange = (event) => {
+        setSearchValue(event.target.value);
     }
 
     return (
