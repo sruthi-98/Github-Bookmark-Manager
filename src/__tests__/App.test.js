@@ -26,5 +26,14 @@ describe('Checking routing', () => {
         expect(wrapper.find(Header)).toHaveLength(1);
         expect(wrapper.find(Search)).toHaveLength(1);
     });
+
+    test('Any other path should display 404 Error', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={[ '/random' ]}>
+                <App />
+            </MemoryRouter>
+        );
+        expect(wrapper.find('h1').text()).toContain('Error 404');
+    });
 })
 
