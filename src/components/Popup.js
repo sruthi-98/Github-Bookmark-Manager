@@ -14,7 +14,7 @@ function Popup({ repo, titleRef, changeHandler, addRepo }) {
                 />
                 <button 
                     onClick={e => addRepo(repo, e)}
-                    className="bg-orange-600 hover:bg-orange-700 font-semibold text-white py-2 px-5 rounded" 
+                    className="bg-orange-700 hover:bg-orange-800 font-semibold text-white py-2 px-5 rounded" 
                 >
                     Save
                 </button>

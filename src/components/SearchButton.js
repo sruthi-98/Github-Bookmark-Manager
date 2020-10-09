@@ -5,7 +5,7 @@ function SearchButton() {
         <input
             type="submit"
             value="Search"
-            className="bg-orange-600 hover:bg-orange-700 font-semibold text-white md:w-2/12 m-2 p-2 rounded"
+            className="bg-orange-700 hover:bg-orange-800 font-semibold text-white md:w-2/12 m-2 p-2 rounded"
         />
     )
 }
