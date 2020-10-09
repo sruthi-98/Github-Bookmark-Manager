@@ -1,6 +1,6 @@
 import React from 'react';
 import AddBookmark from './AddBookmark';
-import Bookmarks from './Bookmarks';
+import BookmarkList from './BookmarkList';
 
 function Manager() {
     return (
@@ -8,7 +8,7 @@ function Manager() {
             <h5 className="text-2xl pb-2 border-b border-solid border-gray-500">
                 Your Bookmark List
             </h5>
-            <Bookmarks />
+            <BookmarkList />
             <AddBookmark />
         </div>
     )
