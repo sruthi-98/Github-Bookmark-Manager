@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from '../axios';
 import PageButtons from './PageButtons';
 import Result from './Result';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
 import SearchDropdown from './SearchDropdown';
+import useDebounce from '../useDebounce';
 
 function Search() {
     const [searchValue, setSearchValue] = useState("");
@@ -13,20 +14,17 @@ function Search() {
     const [pageNumber, setPageNumber] =  useState(1);
     const [loading, setLoading] = useState(false);
 
-    const isInitialMount = useRef(true);
-
     const isResult = Object.keys(result).length !== 0 && result?.data?.items.length !== 0 && !loading;
     const pageLimit = Math.ceil(result?.data?.total_count / 20);
+    const debouncedSearchValue = useDebounce(searchValue, 1000);
 
     // To not fetch results on the first mount but on every state update
     useEffect(() => {
-        if(isInitialMount.current) {
-            isInitialMount.current = false;
-        }
-        else {
+        if (debouncedSearchValue) {
+            setLoading(true);
             fetchResult();
         }
-    }, [pageNumber, searchValue, searchType]);
+    }, [pageNumber, searchType, debouncedSearchValue]);
 
     // State gets updated on button click to prevent re render 
     const updateState = (event) => {
@@ -40,23 +38,24 @@ function Search() {
         }
     }
 
-    const fetchResult = () => { 
-        setLoading(true);
-
+    const fetchResult = () => {  
         const url = searchType === 'repo' ? '/search/repositories' : '/search/users';
         axios({
             url: url,
             params: {
-                q: searchValue,
+                q: debouncedSearchValue,
                 page: pageNumber,
-                per_page: 20
-            }
+                per_page: 20,
+            },
         }).then((result) => {
                 setResult(result);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 setLoading(false);
-            })
-          .catch(error => console.log(error));
+        }).catch(error => {
+            console.log(error);
+            setLoading(false);  
+            setResult({});
+        });
     }
 
     const prevPage = () => {
