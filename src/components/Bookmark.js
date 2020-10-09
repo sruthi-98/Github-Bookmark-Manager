@@ -1,7 +1,7 @@
 import React from 'react';
 import { useBookmarkValue } from '../BookmarkContext';
 
-function Bookmark({ bookmark, id}) {
+function Bookmark({ bookmark }) {
     const [, dispatch] = useBookmarkValue();
 
     const deleteRepo = (id) => {
@@ -12,7 +12,7 @@ function Bookmark({ bookmark, id}) {
     }
 
     return (
-        <div key={id} className="flex justify-between bookmarks-center bg-white border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
+        <div key={bookmark.id} className="flex justify-between bookmarks-center bg-white border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
             <div className="flex flex-col">
                 {bookmark.title !== '' && <p><strong>Title: </strong>{bookmark.title}</p>}
                 <a href={bookmark.url} target="_blank" rel="noopener noreferrer">
