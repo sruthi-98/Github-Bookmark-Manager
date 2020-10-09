@@ -1,7 +1,6 @@
-import React from 'react';
 import Reducer from '../Reducer';
 
-const bookmark = {
+const oneBookmark = {
     id: 1,
     repo_name: 'Bookmark-Manager',
     title: 'Manager',
@@ -13,13 +12,13 @@ describe('Reducer actions', () => {
         const state = { bookmark: [] };
         const newState = Reducer(state, {
             type: 'ADD_BOOKMARK',
-            item: bookmark 
+            item: oneBookmark 
         });
-        expect(newState).toEqual({ bookmark: [bookmark]});
+        expect(newState).toEqual({ bookmark: [oneBookmark] });
     })
 
     test('Tests delete bookmark action', () => {
-        const state = { bookmark: [bookmark] }
+        const state = { bookmark: [oneBookmark] }
         const newState = Reducer(state, {
             type: 'DELETE_BOOKMARK',
             id: 1
