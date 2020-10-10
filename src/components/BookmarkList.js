@@ -9,7 +9,7 @@ function BookmarkList() {
         <div>
             {bookmarks.length === 0 ?
                 <p className="text-xl p-2 mt-4">No bookmarks added !!!!</p> :
-                bookmarks.map((item) => <Bookmark bookmark={item} />)}
+                bookmarks.map((item) => <Bookmark bookmark={item} key={item.id} />)}
         </div>
     )
 }

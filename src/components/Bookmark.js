@@ -12,7 +12,7 @@ function Bookmark({ bookmark }) {
     }
 
     return (
-        <div key={bookmark.id} className="flex justify-between items-center bg-white border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
+        <div className="flex justify-between items-center bg-white border border-solid border-gray-400 shadow-md p-5 m-5 rounded">
             <div className="flex flex-col">
                 {bookmark.title !== '' && <p><strong>Title: </strong>{bookmark.title}</p>}
                 <a href={bookmark.url} target="_blank" rel="noopener noreferrer">
