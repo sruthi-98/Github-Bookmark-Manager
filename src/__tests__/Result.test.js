@@ -48,4 +48,13 @@ describe('Result component', () => {
         );
         expect(wrapper.find('User').length).toEqual(userResult.data.items.length);
     })
+
+    test('Check if proper message is shown if there are no results', () => {
+        const wrapper = mount(
+            <BookmarkProvider reducer={reducer} initialState={initialState}>
+                <Result result={{data: {items: []}}} searchType='' />
+            </BookmarkProvider>
+        );
+        expect(wrapper.find('p').text()).toContain('No results');
+    })
 })
