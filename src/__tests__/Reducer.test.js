@@ -9,20 +9,20 @@ const oneBookmark = {
 
 describe('Reducer actions', () => {
     test('Tests add bookmark action', () => {
-        const state = { bookmark: [] };
+        const state = { bookmarks: [] };
         const newState = Reducer(state, {
             type: 'ADD_BOOKMARK',
             item: oneBookmark 
         });
-        expect(newState).toEqual({ bookmark: [oneBookmark] });
+        expect(newState).toEqual({ bookmarks: [oneBookmark] });
     })
 
     test('Tests delete bookmark action', () => {
-        const state = { bookmark: [oneBookmark] }
+        const state = { bookmarks: [oneBookmark] }
         const newState = Reducer(state, {
             type: 'DELETE_BOOKMARK',
             id: 1
         });
-        expect(newState).toEqual({ bookmark: [] })
+        expect(newState).toEqual({ bookmarks: [] })
     })
 })
