@@ -18,11 +18,19 @@ describe('Reducer actions', () => {
     })
 
     test('Tests delete bookmark action', () => {
-        const state = { bookmarks: [oneBookmark] }
+        const state = { bookmarks: [oneBookmark] };
         const newState = Reducer(state, {
             type: 'DELETE_BOOKMARK',
             id: 1
         });
         expect(newState).toEqual({ bookmarks: [] })
+    })
+
+    test('Test for invalid action', () => {
+        const state = { bookmarks: [oneBookmark] }
+        const newState = Reducer(state, {
+            type: 'INVALID_ACTION',
+        });
+        expect(newState).toEqual(state);
     })
 })
