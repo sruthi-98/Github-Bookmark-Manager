@@ -18,6 +18,18 @@ const repoResult = {
             }
     ]}}
 
+const userResult = {
+    data: { items: [
+            {
+                id: 123,
+                login: "user-123",
+            },
+            {
+                id: 1234,
+                login: "user-1234",
+            }
+    ]}}
+
 describe('Result component', () => {
     test('Check if results of type repo are rendered properly', () => {
         const wrapper = mount(
@@ -26,5 +38,14 @@ describe('Result component', () => {
             </BookmarkProvider>
         );
         expect(wrapper.find('Repo').length).toEqual(repoResult.data.items.length);
+    })
+
+    test('Check if results of type user are rendered properly', () => {
+        const wrapper = mount(
+            <BookmarkProvider reducer={reducer} initialState={initialState}>
+                <Result result={userResult} searchType='user' />
+            </BookmarkProvider>
+        );
+        expect(wrapper.find('User').length).toEqual(userResult.data.items.length);
     })
 })
