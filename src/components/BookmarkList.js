@@ -3,13 +3,13 @@ import { useBookmarkValue } from '../BookmarkContext';
 import Bookmark from './Bookmark';
 
 function BookmarkList() {
-    const [{ bookmark }, ] = useBookmarkValue();
+    const [{ bookmarks }, ] = useBookmarkValue();
 
     return (
         <div>
-            {bookmark.length === 0 ?
+            {bookmarks.length === 0 ?
                 <p className="text-xl p-2 mt-4">No bookmarks added !!!!</p> :
-                bookmark.map((item) => <Bookmark bookmark={item} />)}
+                bookmarks.map((item) => <Bookmark bookmark={item} />)}
         </div>
     )
 }

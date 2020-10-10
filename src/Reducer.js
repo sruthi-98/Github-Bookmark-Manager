@@ -1,5 +1,5 @@
 export const initialState = {
-    bookmark: []
+    bookmarks: []
 };
 
 const reducer = (state, action) => {
@@ -7,21 +7,21 @@ const reducer = (state, action) => {
         case 'ADD_BOOKMARK':
             return {
                 ...state,
-                bookmark: [...state.bookmark, action.item]
+                bookmarks: [...state.bookmarks, action.item]
             }
 
         case 'DELETE_BOOKMARK':
-            const index = state.bookmark.findIndex(
+            const index = state.bookmarks.findIndex(
                 item => item.id === action.id
             );
-            let newBookmark = [...state.bookmark];
+            let newBookmarks = [...state.bookmarks];
             if(index >= 0){
-                newBookmark.splice(index, 1);
+                newBookmarks.splice(index, 1);
             }
 
             return {
                 ...state,
-                bookmark: newBookmark
+                bookmarks: newBookmarks
             }
 
         default:

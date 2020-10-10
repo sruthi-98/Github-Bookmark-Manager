@@ -7,7 +7,7 @@ function Repo({ repo }) {
     const [title, setTitle] = useState('');
     const titleRef = useRef('')
 
-    const [ { bookmark }, dispatch] = useBookmarkValue();
+    const [ { bookmarks }, dispatch] = useBookmarkValue();
     
     const addRepo = (repo) => {
         setShowPopup(false);
@@ -27,7 +27,7 @@ function Repo({ repo }) {
     }
 
     const isAdded = (id) => {
-        return bookmark.some(item => item.id === id);
+        return bookmarks.some(item => item.id === id);
     }
 
     return (
