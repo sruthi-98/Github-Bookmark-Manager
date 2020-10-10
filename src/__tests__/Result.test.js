@@ -1,5 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { BookmarkProvider } from '../BookmarkContext';
+import reducer, { initialState } from '../Reducer';
 import Result from '../components/Result';
 
 const repoResult = {
@@ -18,7 +20,11 @@ const repoResult = {
 
 describe('Result component', () => {
     test('Check if results of type repo are rendered properly', () => {
-        const wrapper = mount(<Result result={repoResult} searchType='repo' />);
-        expect(wrapper.find('Repo').length).toEqual(repoResult.length);
+        const wrapper = mount(
+            <BookmarkProvider reducer={reducer} initialState={initialState}>
+                <Result result={repoResult} searchType='repo' />
+            </BookmarkProvider>
+        );
+        expect(wrapper.find('Repo').length).toEqual(repoResult.data.items.length);
     })
 })
