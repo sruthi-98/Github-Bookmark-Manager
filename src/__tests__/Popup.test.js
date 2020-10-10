@@ -21,7 +21,7 @@ describe('Popup Component', () => {
         expect(changeHandlerMock).toHaveBeenCalledTimes(1);
     })
 
-    test('Checking if the title is captured correctly by reference', () => {
+    test('Check if the title is captured correctly by reference', () => {
         const mockRef = { current: { value: '' } };
         useRef.mockReturnValueOnce(mockRef);
         const wrapper = mount(<Popup titleRef={mockRef} />);
@@ -30,4 +30,12 @@ describe('Popup Component', () => {
         expect(mockRef.current.value).toEqual('sample title');
         expect(mockRef.current.value).not.toEqual('popup');
     });
+
+    test('Check button click calls the onClick handler', () => {
+        const clickHandlerMock = jest.fn();
+        const wrapper = mount(<Popup addRepo={clickHandlerMock} />);
+        const button = wrapper.find('button');
+        button.simulate('click');
+        expect(clickHandlerMock).toHaveBeenCalledTimes(1);
+    })
 })
