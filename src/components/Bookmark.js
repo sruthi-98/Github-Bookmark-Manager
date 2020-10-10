@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBookmarkValue } from '../BookmarkContext';
+import DeleteButton from './DeleteButton';
 
 function Bookmark({ bookmark }) {
     const [, dispatch] = useBookmarkValue();
@@ -19,12 +20,7 @@ function Bookmark({ bookmark }) {
                     <strong>Repository: </strong>{bookmark.repo_name}
                 </a>
             </div>
-            <button
-                onClick={e => deleteRepo(bookmark.id, e)}
-                className="bg-purple-800 hover:bg-purple-900 font-semibold text-white h-10 py-2 px-4 rounded"
-            >
-                Delete
-            </button>
+            <DeleteButton deleteRepo={deleteRepo} id={bookmark.id} />
         </div>
     )
 }
