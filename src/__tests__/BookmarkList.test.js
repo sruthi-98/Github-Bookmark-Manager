@@ -1,9 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { BookmarkProvider } from '../BookmarkContext';
+import reducer, { initialState } from '../Reducer';
 import BookmarkList from '../components/BookmarkList';
-import Bookmark from '../components/Bookmark';
 
-const bookmark = [
+const bookmarks = [
     {
         id: 1,
         repo_name: 'Bookmark-Manager-1',
@@ -18,12 +19,16 @@ const bookmark = [
     }
 ];
 
+initialState.bookmarks = bookmarks;
+
 describe('Bookmarks component', () => {
     test('Check if bookmarks are rendered correctly', () => {
-        mount(<Bookmark bookmark={bookmark[0]} />);
-        mount(<Bookmark bookmark={bookmark[1]} />);
-        const wrapper = mount(<BookmarkList />);
-        const bookmarks = wrapper.find(Bookmark);
-        expect(bookmarks).toHaveLength(bookmark.length);
+        const wrapper = mount(
+            <BookmarkProvider reducer={reducer} initialState={initialState}>
+                <BookmarkList />
+            </BookmarkProvider>
+        );
+        const bookmarkList = wrapper.find('Bookmark');
+        expect(bookmarkList).toHaveLength(initialState.bookmarks.length);
     })
 })
