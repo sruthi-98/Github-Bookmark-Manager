@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DeleteButton({ deleteRepo, id }) {
+function DeleteRepoButton({ deleteRepo, id }) {
     return (
         <div>
             <button
@@ -13,4 +13,4 @@ function DeleteButton({ deleteRepo, id }) {
     )
 }
 
-export default DeleteButton;
+export default DeleteRepoButton;
