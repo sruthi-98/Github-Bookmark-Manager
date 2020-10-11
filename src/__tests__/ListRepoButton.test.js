@@ -2,15 +2,6 @@ import React, { useState } from 'react';
 import { mount } from 'enzyme';
 import ListRepoButton from '../components/ListRepoButton';
 
-// Mock for useState
-jest.mock("react", () => ({
-    ...jest.requireActual("react"),
-    useState: jest.fn()
-}));
-
-const setState = jest.fn((state, value) => state = value);
-useState.mockImplementation(state => [state, setState]);
-
 describe('List Repo Button', () => {
     test('Check if click handler is called on click', () => {
         const clickHandlerMock = jest.fn();
