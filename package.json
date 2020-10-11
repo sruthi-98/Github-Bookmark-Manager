@@ -40,5 +40,11 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "react-test-renderer": "^16.13.1",
     "tailwindcss": "^1.8.10"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "!src/index.js"
+    ]
   }
 }
