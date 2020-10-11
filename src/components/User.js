@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../axios';
+import ListRepoButton from './ListRepoButton';
 import Repo from './Repo';
 
 function User({ user }) {
@@ -21,12 +22,7 @@ function User({ user }) {
             <p className="mb-4">
                 <strong>User:</strong> {user.login}
             </p>
-            <button 
-                onClick={listRepos}
-                className="bg-transparent border border-solid border-purple-800 font-semibold text-indigo-800 p-2 rounded hover:shadow-lg"
-            >
-                {!clicked ? 'View' : 'Hide'} <strong>{user.login}</strong>'s repository list
-            </button>
+            <ListRepoButton clickHandler={listRepos} clicked={clicked} login={user.login} />
             <div key={user.id} >
                 {clicked && repos?.data.length === 0 && <p className="text-lg p-2 mt-2">No repositories !!!!!</p>}
                 
