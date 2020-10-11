@@ -30,6 +30,10 @@ function Repo({ repo }) {
         return bookmarks.some(item => item.id === id);
     }
 
+    const addClickHandler = () => {
+        setShowPopup(true)
+    }
+
     return (
         <div>
             <div className="flex justify-between items-center border border-solid border-gray-400 shadow-lg p-5 m-5 rounded">
@@ -37,7 +41,7 @@ function Repo({ repo }) {
                     <strong>Repository: </strong>{repo.name}
                 </p>
                 <button 
-                    onClick={() => setShowPopup(true)}
+                    onClick={addClickHandler}
                     className="bg-purple-800 hover:bg-purple-900 font-semibold text-white h-10 py-2 px-4 rounded"
                     disabled={isAdded(repo.id)}
                 >
