@@ -20,6 +20,25 @@ function Search() {
 
     // To not fetch results on the first mount but on every state update
     useEffect(() => {
+        const fetchResult = () => {  
+            const url = searchType === 'repo' ? '/search/repositories' : '/search/users';
+            axios({
+                url: url,
+                params: {
+                    q: debouncedSearchValue,
+                    page: pageNumber,
+                    per_page: 20,
+                },
+            }).then((result) => {
+                    setResult(result);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setLoading(false);
+            }).catch(error => {
+                console.log(error);
+                setLoading(false);  
+                setResult({});
+            });
+        }
         if (debouncedSearchValue) {
             setLoading(true);
             fetchResult();
@@ -31,26 +50,6 @@ function Search() {
         event.preventDefault();
         const dropdown = document.getElementsByClassName('search__dropdown')[0];
         setSearchType(dropdown.value);
-    }
-
-    const fetchResult = () => {  
-        const url = searchType === 'repo' ? '/search/repositories' : '/search/users';
-        axios({
-            url: url,
-            params: {
-                q: debouncedSearchValue,
-                page: pageNumber,
-                per_page: 20,
-            },
-        }).then((result) => {
-                setResult(result);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setLoading(false);
-        }).catch(error => {
-            console.log(error);
-            setLoading(false);  
-            setResult({});
-        });
     }
 
     const prevPage = () => {
