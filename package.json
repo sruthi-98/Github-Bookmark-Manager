@@ -14,15 +14,18 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "serve": "^11.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:coverage": "npm test -- --coverage --watchAll=false",
-    "build:css": "tailwind build src/styles/tailwind.css -o src/styles/main.css"
+    "build:css": "tailwind build src/styles/tailwind.css -o src/styles/main.css",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,8 +50,8 @@
   },
   "jest": {
     "collectCoverageFrom": [
-        "src/**/*.{js,jsx,ts,tsx}",
-        "!src/index.js"
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/index.js"
     ]
   }
 }
