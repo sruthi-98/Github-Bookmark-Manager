@@ -64,12 +64,17 @@ function Search() {
         setSearchValue(event.target.value);
     }
 
+    const updateValue = () => {
+        const dropdown = document.getElementsByClassName('search__dropdown')[0];
+        setSearchType(dropdown.value);
+    }
+
     return (
         <div className="h-auto p-5">
             
             <form className="block md:flex bg-white h-auto w-full px-4 py-2 rounded" onSubmit={updateState}>
                 <SearchBar onChange={onChange} />
-                <SearchDropdown />
+                <SearchDropdown onChange={updateValue} />
                 <SearchButton />
             </form>
 
