@@ -18,6 +18,7 @@ function Repo({ repo }) {
                 id: repo.id,
                 repo_name: repo.name,
                 title: title,
+                desc: repo.description,
                 url: repo.html_url
             }
         });
@@ -37,10 +38,11 @@ function Repo({ repo }) {
 
     return (
         <div>
-            <div className="flex justify-between items-center border border-solid border-gray-400 shadow-lg p-5 m-5 rounded">
-                <p className="p-2">
-                    <strong>Repository: </strong>{repo.name}
-                </p>
+            <div className="block md:flex justify-between items-center border border-solid border-gray-400 shadow-lg p-5 m-5 rounded">
+                <div className="flex flex-col p-2">
+                    <p><strong>{repo.name}</strong></p>
+                    {repo.description && <p className="pt-1 pr-2 pb-2 text-sm text-gray-800">{repo.description}</p>}
+                </div>
                 <AddRepoButton id={repo.id} clickHandler={addClickHandler} isAdded={isAdded} />
             </div>
 
