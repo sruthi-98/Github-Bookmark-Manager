@@ -14,7 +14,4 @@ A ReactJS application to manage github repository bookmarks.
 
 5. To perform test, execute either ```npm run test``` or ```npm run test:coverage```.
 
-
-
-
-
+**Live Demo** : https://github-bookmark-manager.herokuapp.com/
