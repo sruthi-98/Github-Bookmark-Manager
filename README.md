@@ -6,7 +6,7 @@ A ReactJS application to manage github repository bookmarks.
 
 1. Execute ```git clone https://github.com/sruthi-98/Github-Bookmark-Manager.git```.
 
-2. Navigate to newly formed folder bu running ```cd Github-Bookmark-Manager```.
+2. Navigate to newly formed folder by running ```cd Github-Bookmark-Manager```.
 
 3. To install all the dependencies, run ```npm install```.
 
